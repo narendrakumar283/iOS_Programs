@@ -24,7 +24,7 @@ public class Browser_Logs
 		//Start Appium server programmatically
 		AppiumServiceBuilder sb=new AppiumServiceBuilder();
 		sb.usingAnyFreePort();
-        sb.usingDriverExecutable(new File("/usr/local/bin/node"));
+                sb.usingDriverExecutable(new File("/usr/local/bin/node"));
 		sb.withAppiumJS(new File("/usr/local/bin/appium"));
 		HashMap<String,String> ev=new HashMap<>();
 		ev.put("PATH","/usr/local/bin:"+System.getenv("PATH"));
@@ -48,11 +48,10 @@ public class Browser_Logs
 			FileWriter fw=new FileWriter(f);
 			BufferedWriter bw=new BufferedWriter(fw);
 			//Launch Gmail site and handle browser logs
-		    WebDriverWait wait=new WebDriverWait(driver,10);
-	        driver.get("https://www.gmail.com");
-	        wait.until(ExpectedConditions.visibilityOfElementLocated(By.name("identifier")));	        											
-			LogEntries ls=driver.manage().logs().get("safariConsole"); 
-			//"browser" for other browsers
+		       WebDriverWait wait=new WebDriverWait(driver,10);
+	               driver.get("https://www.gmail.com");
+	               wait.until(ExpectedConditions.visibilityOfElementLocated(By.name("identifier")));  //"browser" for other browsers        											
+			LogEntries ls=driver.manage().logs().get("safariConsole"); 			
 			for(LogEntry l:ls)
 			{
 				//message in log entries is a json content that content converted as hash map				
@@ -60,9 +59,9 @@ public class Browser_Logs
 				HashMap hp=js.toType(l.getMessage(),Json.MAP_TYPE);
 				bw.write(l.getTimestamp()+"------"+l.getLevel()+"------"+hp.get("text"));															
 			}
-	        Thread.sleep(5000);
-	        bw.close();
-	        fw.close();
+	            Thread.sleep(5000);
+	            bw.close();
+	            fw.close();
 		}
 		catch(Exception ex)
 		{
