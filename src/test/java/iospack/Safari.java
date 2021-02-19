@@ -20,7 +20,7 @@ public class Safari
 		//Start Appium server programmatically
 		AppiumServiceBuilder sb=new AppiumServiceBuilder();
 		sb.usingAnyFreePort();
-        sb.usingDriverExecutable(new File("/usr/local/bin/node"));
+                sb.usingDriverExecutable(new File("/usr/local/bin/node"));
 		sb.withAppiumJS(new File("/usr/local/bin/appium"));
 		HashMap<String,String> ev=new HashMap<>();
 		ev.put("PATH","/usr/local/bin:"+System.getenv("PATH"));
@@ -39,17 +39,16 @@ public class Safari
 		WebDriverWait wait=new WebDriverWait(driver,10);
 		try
 		{
-			Thread.sleep(5000);
+		    Thread.sleep(5000);
 		    driver.get("http://appiumpro.com");
 		    wait.until(ExpectedConditions.elementToBeClickable(By.id("toggleMenu"))).click();
 		    wait.until(ExpectedConditions.elementToBeClickable(By.linkText("Contact"))).click();
-            wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("contactEmail"))).sendKeys("xxxx@gmail.com");
-            														
-            driver.findElement(By.id("contactText")).sendKeys("Hello sir!");
-            driver.findElement(By.cssSelector("input[type=submit]")).click();
-            String res=wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("div[class^=response]"))).getText();
-            System.out.println(res);
-	        Thread.sleep(5000);
+                    wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("contactEmail"))).sendKeys("xxxx@gmail.com");            														
+                   driver.findElement(By.id("contactText")).sendKeys("Hello sir!");
+                   driver.findElement(By.cssSelector("input[type=submit]")).click();
+                   String res=wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("div[class^=response]"))).getText();
+                   System.out.println(res);
+	           Thread.sleep(5000);
 		}
 		catch(Exception ex)
 		{
